@@ -49,5 +49,5 @@ declare module '@ltv/leaflet-pixi-overlay' {
     onAdd(targetMap: Map): void;
     onRemove(): void;
   }
-  export function createPixiOverlay(): PixiOverlay | null | undefined;
+  export function createPixiOverlay(drawCallback: any, pixiContainer: any, options: any): PixiOverlay | null | undefined;
 }
