@@ -1,5 +1,5 @@
 declare module '@ltv/leaflet-pixi-overlay' {
-  import L, { Map } from 'leaflet';
+  import L, { Map, Layer } from 'leaflet';
   //FIXME: Check param types (zoom, moveend, zoomend)
   export interface PixiOverlayEvents {
     zoom(e: any): void;
@@ -38,7 +38,7 @@ declare module '@ltv/leaflet-pixi-overlay' {
     // Clear the canvas before the new render pass
     clearBeforeRender: boolean;
   }
-  export class PixiOverlay {
+  export class PixiOverlay extends Layer {
     options: PixiOverlayOptions;
 
     initialize(drawCallback: any, pixiContainer: any, options: any): void;
@@ -49,5 +49,9 @@ declare module '@ltv/leaflet-pixi-overlay' {
     onAdd(targetMap: Map): void;
     onRemove(): void;
   }
-  export function createPixiOverlay(drawCallback: any, pixiContainer: any, options: any): PixiOverlay | null | undefined;
+  export function createPixiOverlay(
+    drawCallback: any,
+    pixiContainer: any,
+    options: any
+  ): PixiOverlay;
 }
