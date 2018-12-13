@@ -1,8 +1,7 @@
 const L = require('leaflet');
 const PixiOverlay = require('./PixiOverlay');
 
-const PixiOverlayLayer = L.Layer.extend(PixiOverlay);
-L.PixiOverlay = PixiOverlay;
+L.PixiOverlay = L.Layer.extend(PixiOverlay);
 
 // @factory L.pixiOverlay(drawCallback: function, pixiContainer: PIXI.Container, options?: L.PixiOverlay options)
 // Creates a PixiOverlay with the given arguments.
@@ -13,6 +12,6 @@ function createPixiOverlay(drawCallback, pixiContainer, options) {
 }
 
 module.exports = {
-  PixiOverlay: PixiOverlayLayer,
+  PixiOverlay: L.PixiOverlay,
   createPixiOverlay
 };

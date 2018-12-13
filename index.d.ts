@@ -1,11 +1,7 @@
 declare module '@ltv/leaflet-pixi-overlay' {
   import L, { Map, Layer } from 'leaflet';
-  //FIXME: Check param types (zoom, moveend, zoomend)
-  export interface PixiOverlayEvents {
-    zoom(e: any): void;
-    moveend(e: any): void;
-    zoomend(e: any): void;
-  }
+  import { Container } from 'pixi.js';
+
   export interface PixiOverlayOptions {
     // @option padding: Number = 0.1
     // How much to extend the clip area around the map view (relative to its size)
@@ -41,17 +37,15 @@ declare module '@ltv/leaflet-pixi-overlay' {
   export class PixiOverlay extends Layer {
     options: PixiOverlayOptions;
 
-    initialize(drawCallback: any, pixiContainer: any, options: any): void;
-    redraw(data: any): PixiOverlay;
-    getEvents(): PixiOverlayEvents;
-
-    // Events
-    onAdd(targetMap: Map): void;
-    onRemove(): void;
+    initialize(
+      drawCallback: Function,
+      pixiContainer: Container,
+      options?: PixiOverlayOptions
+    ): void;
   }
   export function createPixiOverlay(
-    drawCallback: any,
-    pixiContainer: any,
-    options: any
+    drawCallback: Function,
+    pixiContainer: Container,
+    options?: PixiOverlayOptions
   ): PixiOverlay;
 }

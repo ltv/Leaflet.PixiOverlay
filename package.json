@@ -2,7 +2,7 @@
   "name": "@ltv/leaflet-pixi-overlay",
   "description": "Leaflet Plugin: Pixi.js Overlay",
   "author": "Luc Duong <luc@ltv.vn>, mbaclet@gmail.com",
-  "version": "1.6.6",
+  "version": "1.6.7",
   "main": "./lib/index.js",
   "scripts": {
     "build": "webpack --progress --colors --config webpack/webpack.prod.js",
