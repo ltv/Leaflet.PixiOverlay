@@ -1,5 +1,22 @@
 const L = require('leaflet');
 
+const round = L.Point.prototype._round;
+const no_round = function() {
+  return this;
+};
+
+function setInteractionManager(
+  interactionManager,
+  destroyInteractionManager,
+  autoPreventDefault
+) {
+  if (destroyInteractionManager) {
+    interactionManager.destroy();
+  } else if (!autoPreventDefault) {
+    interactionManager.autoPreventDefault = false;
+  }
+}
+
 const PixiOverlay = {
   options: {
     // @option padding: Number = 0.1
