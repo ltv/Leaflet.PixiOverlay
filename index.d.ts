@@ -1,6 +1,6 @@
 declare module '@ltv/leaflet-pixi-overlay' {
-  import L, { Map, Layer } from 'leaflet';
-  import { Container } from 'pixi.js';
+  import L, { Map, Layer, LatLng, PointTuple, Point } from 'leaflet';
+  import { Container, WebGLRenderer, CanvasRenderer } from 'pixi.js';
 
   export interface PixiOverlayOptions {
     // @option padding: Number = 0.1
@@ -34,17 +34,33 @@ declare module '@ltv/leaflet-pixi-overlay' {
     // Clear the canvas before the new render pass
     clearBeforeRender: boolean;
   }
+
+  export interface PixiOverlayUtils {
+    latLngToLayerPoint(latLng: LatLng, zoom: number): Point;
+    layerPointToLatLng(
+      point: PointTuple | { x: number; y: number },
+      zoom: number
+    ): LatLng;
+    getScale(zoom: number): number;
+    getRenderer(): WebGLRenderer | CanvasRenderer;
+    getContainer(): Container;
+    getMap(): Map;
+  }
+
+  export type PixiDrawCallback = (utils: PixiOverlayUtils) => void;
+
   export class PixiOverlay extends Layer {
     options: PixiOverlayOptions;
 
     initialize(
-      drawCallback: Function,
+      drawCallback: PixiDrawCallback,
       pixiContainer: Container,
       options?: PixiOverlayOptions
     ): void;
   }
+
   export function createPixiOverlay(
-    drawCallback: Function,
+    drawCallback: PixiDrawCallback,
     pixiContainer: Container,
     options?: PixiOverlayOptions
   ): PixiOverlay;
