@@ -36,12 +36,12 @@ declare module '@ltv/leaflet-pixi-overlay' {
   }
 
   export interface PixiOverlayUtils {
-    latLngToLayerPoint(latLng: LatLng, zoom: number): Point;
+    latLngToLayerPoint(latLng: LatLng, zoom?: number): Point;
     layerPointToLatLng(
       point: PointTuple | { x: number; y: number },
-      zoom: number
+      zoom?: number
     ): LatLng;
-    getScale(zoom: number): number;
+    getScale(zoom?: number): number;
     getRenderer(): WebGLRenderer | CanvasRenderer;
     getContainer(): Container;
     getMap(): Map;
