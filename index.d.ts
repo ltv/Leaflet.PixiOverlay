@@ -47,7 +47,7 @@ declare module '@ltv/leaflet-pixi-overlay' {
     getMap(): Map;
   }
 
-  export type PixiDrawCallback = (utils: PixiOverlayUtils) => void;
+  export type PixiDrawCallback = (utils: PixiOverlayUtils, event?: any) => void;
 
   export class PixiOverlay extends Layer {
     options: PixiOverlayOptions;
@@ -57,6 +57,8 @@ declare module '@ltv/leaflet-pixi-overlay' {
       pixiContainer: Container,
       options?: PixiOverlayOptions
     ): void;
+
+    redraw(data: any): PixiOverlay;
   }
 
   export function createPixiOverlay(
